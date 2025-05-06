@@ -1,17 +1,17 @@
 const { validationResult } = require("express-validator");
+const response = require("@/utils/response");
 
 const handleValidationErrors = (req, res, next) => {
-    const errors = validationResult(req);
+    const result = validationResult(req);
 
-    if (errors.isEmpty()) return next();
+    if (result.isEmpty()) return next();
 
-    res.status(422).json({
-        status: "error",
-        errors: errors.array().map((error) => ({
-            field: error.path,
-            message: error.msg,
-        })),
-    });
+    const errors = result.array().map((error) => ({
+        field: error.path,
+        message: error.msg,
+    }));
+
+    response.error(res, 422, "Unprocessable entity.", errors);
 };
 
 module.exports = handleValidationErrors;

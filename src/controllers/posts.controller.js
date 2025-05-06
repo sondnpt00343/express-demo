@@ -1,118 +1,57 @@
-const fs = require("fs").promises;
-
-const DB_PATH = "./db.json";
-const RESOURCE = "posts";
-
-// 1. Service layer
-// 2. Xử lý lỗi chung
-// 3. Chuẩn hóa response: success, error
-// 4. 1-N
-
-// Write DB
-const writeDb = async (resource, data) => {
-    let db = {};
-    try {
-        const jsonDb = await fs.readFile(DB_PATH, "utf-8");
-        db = JSON.parse(jsonDb);
-    } catch (error) {}
-
-    db[resource] = data;
-
-    await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
-};
-
-// Read DB
-const readDb = async (resource) => {
-    try {
-        const jsonDb = await fs.readFile(DB_PATH, "utf-8");
-        const db = JSON.parse(jsonDb) ?? {};
-        return db[resource] ?? [];
-    } catch (error) {
-        return [];
-    }
-};
+const postsService = require("@/services/posts.service");
+const commentsService = require("@/services/comments.service");
+const { success } = require("@/utils/response");
+const throwError = require("@/utils/throwError");
 
 exports.getAllPosts = async (req, res) => {
-    const posts = await readDb(RESOURCE);
-    res.json({
-        status: "success",
-        data: posts,
-    });
+    const posts = await postsService.getAllPosts();
+    success(res, 200, posts);
 };
 
 exports.getPostById = async (req, res) => {
-    const posts = await readDb(RESOURCE);
-    const post = posts.find((post) => post.id === +req.params.id);
-
-    if (!post) {
-        res.status(404).json({
-            status: "error",
-            message: "Resource notfound.",
-        });
-        return;
-    }
-
-    res.json({
-        status: "success",
-        data: post,
-    });
+    const post = await postsService.getPostById(req.params.id);
+    if (!post) throwError(404, "Not found.");
+    const comments = await commentsService.getCommentsByPostId(post.id);
+    const response = {
+        ...post,
+        comments,
+    };
+    success(res, 200, response);
 };
 
 exports.createPost = async (req, res) => {
-    const posts = await readDb(RESOURCE);
-    const nextId = (posts.at(-1)?.id ?? 0) + 1;
-    const post = {
-        ...req.body,
-        id: nextId,
-    };
-
-    posts.push(post);
-
-    await writeDb(RESOURCE, posts);
-
-    res.status(201).json({
-        status: "success",
-        data: post,
-    });
+    const post = await postsService.createPost(req.body);
+    success(res, 201, post);
 };
 
 exports.updatePost = async (req, res) => {
-    const posts = await readDb(RESOURCE);
-    const post = posts.find((post) => post.id === +req.params.id);
-
-    if (!post) {
-        res.status(404).json({
-            status: "error",
-            message: "Resource notfound.",
-        });
-        return;
-    }
-
-    Object.assign(post, req.body);
-
-    await writeDb(RESOURCE, posts);
-
-    res.json({
-        status: "success",
-        data: post,
-    });
+    const post = await postsService.updatePost(req.params.id, req.body);
+    if (!post) throwError(404, "Not found.");
+    success(res, 200, post);
 };
 
 exports.deletePost = async (req, res) => {
-    const posts = await readDb(RESOURCE);
-    const postIndex = posts.findIndex((post) => post.id === +req.params.id);
-
-    if (postIndex === -1) {
-        res.status(404).json({
-            status: "error",
-            message: "Resource notfound.",
-        });
-        return;
-    }
-
-    posts.splice(postIndex, 1);
-
-    await writeDb(RESOURCE, posts);
+    const result = await postsService.deletePost(req.params.id);
+    if (!result) throwError(404, "Not found.");
 
     res.status(204).send();
+};
+
+exports.getPostComments = async (req, res) => {
+    const post = await postsService.getPostById(req.params.id);
+    if (!post) throwError(404, "Not found.");
+
+    const comments = await commentsService.getCommentsByPostId(post.id);
+    success(res, 200, comments);
+};
+
+exports.createPostComments = async (req, res) => {
+    const post = await postsService.getPostById(req.params.id);
+    if (!post) throwError(404, "Not found.");
+
+    const newComment = await commentsService.createComment({
+        post_id: post.id,
+        content: req.body.content,
+    });
+    success(res, 201, newComment);
 };
