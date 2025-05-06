@@ -1,8 +1,12 @@
-const express = require("express");
 const fs = require("fs").promises;
 
 const DB_PATH = "./db.json";
 const RESOURCE = "posts";
+
+// 1. Service layer
+// 2. Xử lý lỗi chung
+// 3. Chuẩn hóa response: success, error
+// 4. 1-N
 
 // Write DB
 const writeDb = async (resource, data) => {
@@ -28,21 +32,15 @@ const readDb = async (resource) => {
     }
 };
 
-const router = express.Router();
-
-// 1. Xóa bỏ mảng "posts" (Fake DB)
-// 2. Thay thế "posts" tại các method bằng readDb(RESOURCE)
-// 3. Tại methods thêm/sửa/xóa dùng writeDb(RESOURCE)
-
-router.get("/", async (req, res) => {
+exports.getAllPosts = async (req, res) => {
     const posts = await readDb(RESOURCE);
     res.json({
         status: "success",
         data: posts,
     });
-});
+};
 
-router.get("/:id", async (req, res) => {
+exports.getPostById = async (req, res) => {
     const posts = await readDb(RESOURCE);
     const post = posts.find((post) => post.id === +req.params.id);
 
@@ -58,9 +56,9 @@ router.get("/:id", async (req, res) => {
         status: "success",
         data: post,
     });
-});
+};
 
-router.post("/", async (req, res) => {
+exports.createPost = async (req, res) => {
     const posts = await readDb(RESOURCE);
     const nextId = (posts.at(-1)?.id ?? 0) + 1;
     const post = {
@@ -76,9 +74,9 @@ router.post("/", async (req, res) => {
         status: "success",
         data: post,
     });
-});
+};
 
-router.put("/:id", async (req, res) => {
+exports.updatePost = async (req, res) => {
     const posts = await readDb(RESOURCE);
     const post = posts.find((post) => post.id === +req.params.id);
 
@@ -98,9 +96,9 @@ router.put("/:id", async (req, res) => {
         status: "success",
         data: post,
     });
-});
+};
 
-router.delete("/:id", async (req, res) => {
+exports.deletePost = async (req, res) => {
     const posts = await readDb(RESOURCE);
     const postIndex = posts.findIndex((post) => post.id === +req.params.id);
 
@@ -117,6 +115,4 @@ router.delete("/:id", async (req, res) => {
     await writeDb(RESOURCE, posts);
 
     res.status(204).send();
-});
-
-module.exports = router;
+};
