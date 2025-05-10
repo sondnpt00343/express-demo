@@ -1,12 +1,12 @@
 const db = require("@/configs/db");
 const { buildInsertQuery, buildUpdateQuery } = require("@/utils/queryBuilder");
 
-exports.getUsers = async () => {
+exports.findAll = async () => {
     const [users] = await db.query("select * from users");
     return users;
 };
 
-exports.getUser = async (id) => {
+exports.findById = async (id) => {
     const [users] = await db.query(
         `select * from users where id = ? or username = ?`,
         [id, id]
@@ -14,7 +14,7 @@ exports.getUser = async (id) => {
     return users[0];
 };
 
-exports.createUser = async (data) => {
+exports.create = async (data) => {
     const { columns, placeholders, values } = buildInsertQuery(data);
 
     const query = `INSERT INTO users (${columns}) VALUES (${placeholders});`;
@@ -26,7 +26,7 @@ exports.createUser = async (data) => {
     };
 };
 
-exports.updateUser = async (id, data) => {
+exports.update = async (id, data) => {
     const { setClause, values } = buildUpdateQuery(data);
 
     values.push(id);
@@ -40,7 +40,7 @@ exports.updateUser = async (id, data) => {
     };
 };
 
-exports.deleteUser = async (id) => {
+exports.remove = async (id) => {
     const [{ affectedRows }] = await db.query(
         `delete from users where id = ?`,
         [id]
