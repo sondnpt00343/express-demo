@@ -1,43 +1,43 @@
 {
-  "posts": [
-    {
-      "title": "Tiêu đề bài viết 2",
-      "description": "Mô tả bài viết 2",
-      "content": "Nội dung bài viết 2",
-      "id": 1
-    },
-    {
-      "title": "Tiêu đề bài viết",
-      "description": "Mô tả bài viết",
-      "content": "Nội dung bài viết",
-      "id": 2
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "content": "Binh luan 1",
-      "post_id": 1
-    },
-    {
-      "id": 2,
-      "content": "Binh luan 2",
-      "post_id": 1
-    },
-    {
-      "id": 3,
-      "content": "Binh luan 2",
-      "post_id": 2
-    },
-    {
-      "post_id": 1,
-      "content": "Xin chào anh em!",
-      "id": 4
-    },
-    {
-      "post_id": 2,
-      "content": "Xin chào anh em!",
-      "id": 5
-    }
-  ]
+    "posts": [
+        {
+            "title": "Tiêu đề bài viết 2",
+            "description": "Mô tả bài viết 2",
+            "content": "Nội dung bài viết 2",
+            "id": 1
+        },
+        {
+            "abc": "xyz",
+            "title": "Tiêu đề bài viết",
+            "content": "Nội dung bài viết",
+            "id": 2
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "content": "Binh luan 1",
+            "post_id": 1
+        },
+        {
+            "id": 2,
+            "content": "Binh luan 2",
+            "post_id": 1
+        },
+        {
+            "id": 3,
+            "content": "Binh luan 2",
+            "post_id": 2
+        },
+        {
+            "post_id": 1,
+            "content": "Xin chào anh em!",
+            "id": 4
+        },
+        {
+            "post_id": 2,
+            "content": "Xin chào anh em!",
+            "id": 5
+        }
+    ]
 }
