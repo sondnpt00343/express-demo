@@ -3,14 +3,16 @@ const response = require("@/utils/response");
 const throw404 = require("@/utils/throw404");
 
 exports.getList = async (req, res) => {
-    const users = await usersService.getAll();
-    response.success(res, 200, users);
+    const result = await usersService.getAll(req.page, req.limit);
+    // 4
+    res.paginate(result);
 };
 
 exports.getOne = async (req, res) => {
     const user = await usersService.getById(req.params.id);
     if (!user) throw404();
-    response.success(res, 200, user);
+    // 5
+    res.success(200, user);
 };
 
 exports.create = async (req, res) => {

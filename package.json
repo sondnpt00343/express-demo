@@ -1,10 +1,12 @@
 {
     "type": "commonjs",
     "dependencies": {
+        "@faker-js/faker": "^9.7.0",
         "express": "^5.1.0",
         "express-validator": "^7.2.1",
         "module-alias": "^2.2.3",
-        "mysql2": "^3.14.1"
+        "mysql2": "^3.14.1",
+        "slugify": "^1.6.6"
     },
     "_moduleAliases": {
         "@": "src"

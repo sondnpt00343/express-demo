@@ -1,6 +1,4 @@
-// 1: Chuẩn hóa định dạng trả về của API
 function success(res, status, data, message) {
-    // Nếu status là 204 thì không trả về dữ liệu
     if (status === 204) return res.status(status).send();
 
     res.status(status).json({
@@ -18,7 +16,20 @@ function error(res, status, message, errors) {
     });
 }
 
+function paginate(res, items, total, page, limit) {
+    success(res, 200, {
+        items,
+        pagination: {
+            current_page: page,
+            per_page: limit,
+            total,
+            last_page: Math.ceil(total / limit),
+        },
+    });
+}
+
 module.exports = {
     success,
     error,
+    paginate,
 };

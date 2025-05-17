@@ -3,9 +3,10 @@ const usersModel = require("@/models/users.model");
 // Tạo class thế này để đỡ phải export từng function
 // các bạn nhé
 class UsersService {
-    async getAll() {
-        const users = await usersModel.findAll();
-        return users;
+    async getAll(page, limit) {
+        const items = await usersModel.findAll(page, limit);
+        const total = await usersModel.count();
+        return { items, total };
     }
 
     async getById(id) {

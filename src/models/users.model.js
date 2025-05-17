@@ -1,9 +1,18 @@
 const db = require("@/configs/db");
 const { buildInsertQuery, buildUpdateQuery } = require("@/utils/queryBuilder");
 
-exports.findAll = async () => {
-    const [users] = await db.query("select * from users");
+exports.findAll = async (page, limit) => {
+    const offset = (page - 1) * limit;
+    const [users] = await db.query(
+        `select id, name, avatar, created_at from users order by created_at desc limit ? offset ?`,
+        [limit, offset]
+    );
     return users;
+};
+
+exports.count = async () => {
+    const [[{ total }]] = await db.query(`select count(*) as total from users`);
+    return total;
 };
 
 exports.findById = async (id) => {
