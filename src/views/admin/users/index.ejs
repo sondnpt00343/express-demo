@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <%- include("../partials/head") %>
+    </head>
+    <body>
+        <%- include("../partials/header") %>
+        <main>
+            <h1>Users</h1>
+            <ul>
+                <% for (let user of users) { %>
+                <li>
+                    <a href="/admin/users/<%= user.id %>">
+                        <%= user.id %>. <%= user.name %>
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </main>
+        <%- include("../partials/footer") %>
+    </body>
+</html>
