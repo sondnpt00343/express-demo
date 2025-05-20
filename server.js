@@ -6,17 +6,11 @@ const errorHandler = require("@/middlewares/errorHandler");
 const responseEnhancer = require("@/middlewares/responseEnhancer");
 const handlePagination = require("@/middlewares/handlePagination");
 
-// 1. Mệnh đề where, toán tử: =, !=, <>, >, >=, <, <=, AND, OR, IN, NOT IN, IS NULL, IS NOT NULL, BETWEEN, LIKE
-// 2. Sắp xếp, giới hạn: ORDER, LIMIT, OFFSET
-// 3. Thực hành xây dựng chức năng phân trang
-// 4. 1-1, n-n
-
 const app = express();
 
 app.use(express.static("public"));
 app.use(express.json());
 
-// 3
 app.use(handlePagination);
 app.use(responseEnhancer);
 app.use("/api/v1", router);

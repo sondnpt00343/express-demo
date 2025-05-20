@@ -4,14 +4,12 @@ const throw404 = require("@/utils/throw404");
 
 exports.getList = async (req, res) => {
     const result = await usersService.getAll(req.page, req.limit);
-    // 4
     res.paginate(result);
 };
 
 exports.getOne = async (req, res) => {
     const user = await usersService.getById(req.params.id);
     if (!user) throw404();
-    // 5
     res.success(200, user);
 };
 

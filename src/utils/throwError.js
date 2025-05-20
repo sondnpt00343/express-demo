@@ -1,4 +1,3 @@
-// 6: Hàm throw lỗi => errorHandler() sẽ xử lý
 function throwError(status, message, errors) {
     const error = new Error(message);
     error.status = status;
@@ -7,6 +6,3 @@ function throwError(status, message, errors) {
 }
 
 module.exports = throwError;
-
-// BÀi TẬP: TÌM VỪA SỬA NHỮNG CHỖ RES LỖI
-// => Thay thế bằng throwError()
