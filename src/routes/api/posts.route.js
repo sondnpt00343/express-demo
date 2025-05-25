@@ -1,5 +1,5 @@
 const express = require("express");
-const postsController = require("@/controllers/posts.controller");
+const postsController = require("@/controllers/api/posts.controller");
 const postsValidator = require("@/validators/posts.validator");
 
 const router = express.Router();

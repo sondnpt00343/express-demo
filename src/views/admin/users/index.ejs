@@ -1,25 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
-        <%- include("../partials/head") %>
-    </head>
-    <body>
-        <%- include("../partials/header") %>
-        <main>
-            <h1>Users</h1>
-            <ul>
-                <% for (let user of users) { %>
-                <li>
-                    <a href="/admin/users/<%= user.id %>">
-                        <%= user.id %>. <%= user.name %>
-                    </a>
-                </li>
-                <% } %>
-            </ul>
-        </main>
-        <%- include("../partials/footer") %>
-    </body>
-</html>
+<div class="content-header">
+    <h1>Users</h1>
+    <a href="create-product.html" class="btn-primary">
+        <i class="fas fa-plus"></i> Add New User
+    </a>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+    <form id="filterForm" class="filter-form" novalidate>
+        <div class="form-group">
+            <label for="filterName">User Name</label>
+            <input
+                type="text"
+                id="filterName"
+                class="form-control"
+                placeholder="Search products..."
+            />
+            <span class="error-text" id="filterNameError"
+                >Please enter a valid product name.</span
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="filterCategory">Category</label>
+            <select id="filterCategory" class="form-control">
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="food">Food</option>
+                <option value="books">Books</option>
+            </select>
+            <span class="error-text" id="filterCategoryError"
+                >Please select a valid category.</span
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="filterStatus">Status</label>
+            <select id="filterStatus" class="form-control">
+                <option value="">All Statuses</option>
+                <option value="in_stock">In Stock</option>
+                <option value="low_stock">Low Stock</option>
+                <option value="out_of_stock">Out of Stock</option>
+            </select>
+            <span class="error-text" id="filterStatusError"
+                >Please select a valid status.</span
+            >
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: flex-end">
+            <button type="submit" class="btn-primary">
+                <i class="fas fa-filter"></i> Filter
+            </button>
+            <button
+                type="button"
+                id="resetFilters"
+                class="btn-secondary"
+                style="margin-left: 10px"
+            >
+                <i class="fas fa-times"></i> Reset
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Users Table -->
+<div class="table-container">
+    <table class="products-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- User rows -->
+            <% for (let user of users) { %>
+            <tr data-id="1">
+                <td>
+                    <div style="display: flex; align-items: center">
+                        <img
+                            src="<%= user.avatar %>"
+                            alt="<%= user.name %>"
+                            class="product-image"
+                        />
+                        <div style="margin-left: 15px">
+                            <div class="product-name"><%= user.name %></div>
+                            <div class="product-category">
+                                <%= user.username %>5
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>Electronics</td>
+                <td class="product-price">$199.99</td>
+                <td>75 units</td>
+                <td>
+                    <span class="badge badge-success">In Stock</span>
+                </td>
+                <td>
+                    <div class="action-buttons">
+                        <a
+                            href="/admin/users/<%= user.id %>"
+                            class="action-btn view"
+                            title="View"
+                        >
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="#" class="action-btn edit" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a
+                            href="#"
+                            class="action-btn delete delete-product"
+                            title="Delete"
+                            data-id="1"
+                            data-name="Wireless Headphones"
+                        >
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination-container">
+        <div class="pagination-info">Showing 1-6 of 56 products</div>
+        <ul class="pagination">
+            <li><a href="#" data-page="1" class="active">1</a></li>
+            <li><a href="#" data-page="2">2</a></li>
+            <li><a href="#" data-page="3">3</a></li>
+            <li><a href="#" data-page="4">4</a></li>
+            <li><a href="#" data-page="5">5</a></li>
+            <li><a href="#" data-page="6">6</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal" id="confirmDeleteModal">
+    <div class="modal-content">
+        <h3 class="modal-title">Confirm Delete</h3>
+        <div class="modal-body">
+            Are you sure you want to delete "<span id="deleteProductName"></span
+            >"? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="cancelDelete" class="btn-secondary">
+                Cancel
+            </button>
+            <button type="button" id="confirmDelete" class="btn-danger">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>

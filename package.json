@@ -4,6 +4,7 @@
         "@faker-js/faker": "^9.7.0",
         "ejs": "^3.1.10",
         "express": "^5.1.0",
+        "express-ejs-layouts": "^2.5.1",
         "express-validator": "^7.2.1",
         "module-alias": "^2.2.3",
         "mysql2": "^3.14.1",

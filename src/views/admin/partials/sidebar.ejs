@@ -1,0 +1,30 @@
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <h1>Admin Dashboard</h1>
+    </div>
+
+    <nav class="sidebar-menu">
+        <a href="index.html" class="menu-item"> Dashboard </a>
+        <% for (let item of sidebarItems) { %>
+        <a
+            href="/admin<%= item.path %>"
+            class="menu-item <%= item.path === path ? "active" : "" %>"
+        >
+            <i class="fas <%= item.icon %>"></i>
+            <%= item.title %>
+        </a>
+        <% } %>
+        <a href="login.html" class="menu-item">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+    </nav>
+
+    <div class="user-profile">
+        <div class="avatar">JD</div>
+        <div class="user-info">
+            <p>John Doe</p>
+            <small>Administrator</small>
+        </div>
+    </div>
+</aside>

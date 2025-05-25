@@ -1,17 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <%- include("../partials/head") %>
-    </head>
-    <body>
-        <%- include("../partials/header") %>
-        <main>
-            <h1><%= user.name %></h1>
-            <p>Created: <%= user.created_at %></p>
-        </main>
-        <%- include("../partials/footer") %>
-    </body>
-</html>
+<!-- Product Header -->
+<div class="product-detail-header">
+    <h1>Product Detail</h1>
+    <div class="header-buttons">
+        <a href="#" class="btn-primary"> <i class="fas fa-edit"></i> Edit </a>
+        <a href="products.html" class="btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+    </div>
+</div>
+
+<!-- Product Information -->
+<div class="product-detail-card">
+    <div class="product-info">
+        <div class="product-image-container">
+            <img
+                src="https://via.placeholder.com/300"
+                alt="Product"
+                class="product-detail-image"
+            />
+        </div>
+        <div class="product-detail-info">
+            <h2>Wireless Headphones</h2>
+            <div class="product-detail-category">Category: Electronics</div>
+            <div class="product-detail-price">$199.99</div>
+
+            <div class="product-stock">
+                <span class="badge badge-success">In Stock</span>
+                <span>75 units available</span>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">SKU</div>
+                <div class="info-value">P100125</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">Brand</div>
+                <div class="info-value">AudioTech</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">Created Date</div>
+                <div class="info-value">01/10/2023</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-label">Last Updated</div>
+                <div class="info-value">15/05/2023</div>
+            </div>
+
+            <div class="product-description">
+                <h3>Product Description</h3>
+                <div class="description-text">
+                    <p>
+                        Experience premium sound quality with our Wireless
+                        Headphones. These headphones feature active noise
+                        cancellation, 30-hour battery life, and comfortable ear
+                        cups for extended listening sessions. Perfect for music
+                        lovers, gamers, and professionals who need high-quality
+                        audio.
+                    </p>
+                    <p>
+                        The built-in microphone ensures clear call quality, and
+                        the Bluetooth 5.0 technology provides stable
+                        connectivity with all your devices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-specs">
+        <h3>Specifications</h3>
+        <table class="specs-table">
+            <tr>
+                <td>Connectivity</td>
+                <td>Bluetooth 5.0, 3.5mm Audio Jack</td>
+            </tr>
+            <tr>
+                <td>Battery Life</td>
+                <td>Up to 30 hours</td>
+            </tr>
+            <tr>
+                <td>Weight</td>
+                <td>280g</td>
+            </tr>
+            <tr>
+                <td>Dimensions</td>
+                <td>7.5 x 6.7 x 3.2 inches</td>
+            </tr>
+            <tr>
+                <td>Noise Cancellation</td>
+                <td>Active Noise Cancellation (ANC)</td>
+            </tr>
+            <tr>
+                <td>Microphone</td>
+                <td>Built-in with noise reduction</td>
+            </tr>
+            <tr>
+                <td>Warranty</td>
+                <td>1 year manufacturer warranty</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Product Footer Actions -->
+    <div class="product-footer">
+        <div class="footer-left">
+            <a href="products.html" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Products
+            </a>
+        </div>
+        <div class="footer-right">
+            <a href="#" class="btn-primary">
+                <i class="fas fa-edit"></i> Edit Product
+            </a>
+            <a
+                href="#"
+                class="btn-danger delete-product"
+                data-id="1"
+                data-name="Wireless Headphones"
+            >
+                <i class="fas fa-trash"></i> Delete
+            </a>
+        </div>
+    </div>
+</div>
