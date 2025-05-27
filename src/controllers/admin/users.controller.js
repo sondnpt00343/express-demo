@@ -4,6 +4,8 @@ exports.index = async (req, res) => {
     const page = req.query.page ?? 1;
     const { items, total } = await usersService.getAll(page, 20);
 
+    console.log(await res.locals.session.get("name"));
+
     res.render("admin/users/index", {
         users: items,
         total,
@@ -21,6 +23,22 @@ exports.create = async (req, res) => {
         errors: {},
         old: {},
     });
+};
+
+exports.edit = async (req, res) => {
+    const user = await usersService.getById(req.params.id);
+    console.log(user);
+
+    res.render("admin/users/edit", {
+        errors: {},
+        old: user,
+    });
+};
+
+exports.update = async (req, res) => {
+    const { confirm_password, ...body } = req.body;
+    await usersService.update(req.params.id, body);
+    res.redirect(`/admin/users/${req.params.id}/edit`);
 };
 
 exports.store = async (req, res) => {
