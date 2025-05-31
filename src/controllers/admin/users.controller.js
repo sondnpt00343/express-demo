@@ -43,6 +43,7 @@ exports.store = async (req, res) => {
     const { confirm_password, ...body } = req.body;
     await usersService.create(body);
 
+    // Flash message
     res.setFlash({
         type: "success",
         message: "Tạo người dùng thành công",
