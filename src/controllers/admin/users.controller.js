@@ -4,8 +4,6 @@ exports.index = async (req, res) => {
     const page = req.query.page ?? 1;
     const { items, total } = await usersService.getAll(page, 20);
 
-    console.log(await res.locals.session.get("name"));
-
     res.render("admin/users/index", {
         users: items,
         total,

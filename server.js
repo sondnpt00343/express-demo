@@ -11,7 +11,9 @@ const errorHandler = require("@/middlewares/errorHandler");
 const responseEnhancer = require("@/middlewares/responseEnhancer");
 const handlePagination = require("@/middlewares/handlePagination");
 const handleSidebar = require("@/middlewares/admin/handleSidebar");
-const handleSession = require("@/middlewares/admin/handleSession");
+const session = require("@/middlewares/admin/session");
+const shareLocals = require("@/middlewares/admin/shareLocals");
+const checkAuth = require("@/middlewares/admin/checkAuth");
 
 const app = express();
 
@@ -33,7 +35,9 @@ app.set("layout", "admin/layouts/default");
 
 // Routers
 app.use("/api/v1", router);
-app.use("/admin", handleSession, handleSidebar, adminRouter);
+
+app.use("/admin", session, shareLocals, checkAuth, handleSidebar);
+app.use("/admin", adminRouter);
 
 // Error handler
 app.use(notFoundHandler);

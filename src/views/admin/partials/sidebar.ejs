@@ -1,6 +1,9 @@
 <aside class="sidebar">
     <div class="sidebar-logo">
         <h1>Admin Dashboard</h1>
+        <% if (auth) { %>
+        <p>Hi, <%= auth.email %></p>
+        <% } %>
     </div>
 
     <nav class="sidebar-menu">
@@ -14,10 +17,12 @@
             <%= item.title %>
         </a>
         <% } %>
-        <a href="login.html" class="menu-item">
-            <i class="fas fa-sign-out-alt"></i>
-            Logout
-        </a>
+        <form method="POST" action="/admin/logout?_method=DELETE" >
+            <button type="submit" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </form>
     </nav>
 
     <div class="user-profile">

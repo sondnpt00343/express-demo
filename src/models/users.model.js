@@ -20,6 +20,14 @@ exports.findById = async (id) => {
         `select * from users where id = ? or username = ?`,
         [id, id]
     );
+    return users[0] ?? null;
+};
+
+exports.findByEmailAndPassword = async (email, password) => {
+    const [users] = await db.query(
+        `select * from users where email = ? and password = ?`,
+        [email, password]
+    );
     return users[0];
 };
 
