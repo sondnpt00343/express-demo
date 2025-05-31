@@ -1,11 +1,11 @@
 function checkAuth(req, res, next) {
-    const isAuthRequires = !["/register", "/login"].includes(req.path);
+    const isAuthRequired = !["/register", "/login"].includes(req.path);
 
-    if (!res.locals.auth && isAuthRequires) {
+    if (!res.locals.auth && isAuthRequired) {
         return res.redirect("/admin/login");
     }
 
-    if (res.locals.auth && !isAuthRequires) {
+    if (res.locals.auth && !isAuthRequired) {
         return res.redirect("/admin/dashboard");
     }
 

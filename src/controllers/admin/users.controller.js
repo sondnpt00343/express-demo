@@ -42,5 +42,10 @@ exports.update = async (req, res) => {
 exports.store = async (req, res) => {
     const { confirm_password, ...body } = req.body;
     await usersService.create(body);
+
+    res.setFlash({
+        type: "success",
+        message: "Tạo người dùng thành công",
+    });
     res.redirect("/admin/users");
 };

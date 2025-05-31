@@ -8,6 +8,9 @@ async function shareLocals(req, res, next) {
         res.locals.auth = await usersService.getById(userId);
     }
 
+    res.locals.flash = req.session.flash;
+    delete req.session.flash;
+
     next();
 }
 

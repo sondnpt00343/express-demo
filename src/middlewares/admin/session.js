@@ -19,6 +19,11 @@ async function session(req, res, next) {
 
     req.session = JSON.parse(session.data ?? null) ?? {};
 
+    // Flash message
+    res.setFlash = (data) => {
+        req.session.flash = data;
+    };
+
     res.on("finish", () => {
         sessionModel.update(_sid, {
             data: JSON.stringify(req.session),
