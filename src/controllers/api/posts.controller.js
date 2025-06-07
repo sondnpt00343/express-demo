@@ -4,6 +4,15 @@ const { success } = require("@/utils/response");
 const throwError = require("@/utils/throwError");
 
 exports.getAllPosts = async (req, res) => {
+    const message = {
+        from: `"Marketing Team" <marketing@fullstack.edu.vn>`,
+        to: "sondnf8@gmail.com",
+        subject: "Message title",
+        text: "Plaintext version of the message",
+        html: "<p>HTML version of the message</p>",
+    };
+
+    const info = await transporter.sendMail(message);
     const posts = await postsService.getAllPosts();
     success(res, 200, posts);
 };
