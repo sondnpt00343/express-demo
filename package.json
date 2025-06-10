@@ -1,5 +1,9 @@
 {
     "type": "commonjs",
+    "scripts": {
+        "dev": "node --watch ./server.js",
+        "queue:work": "node --watch ./src/workers/queueWorker.js"
+    },
     "dependencies": {
         "@faker-js/faker": "^9.7.0",
         "cookie-parser": "^1.4.7",
