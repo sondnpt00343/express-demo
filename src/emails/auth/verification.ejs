@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xác thực tài khoản</title>
+</head>
+
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; line-height: 1.6;">
+
+  <!-- Container chính -->
+  <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 30px; text-align: center;">
+      <div style="background-color: rgba(255,255,255,0.2); width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);">
+        <div style="width: 40px; height: 40px; border: 3px solid #ffffff; border-radius: 50%; border-top-color: transparent;">
+          <img src="http://localhost:3000/api/v1/users/<%= userId %>/email-image.jpg" alt="">
+        </div>
+      </div>
+      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+        Xác Thực Tài Khoản 123
+      </h1>
+      <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0; font-size: 16px;">
+        Chào mừng bạn đến với nền tảng của chúng tôi!
+      </p>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div style="padding: 40px 30px;">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h2 style="color: #333333; margin: 0 0 15px; font-size: 24px; font-weight: 600;">
+          Chào <span style="color: #667eea;">[TÊN NGƯỜI DÙNG]</span>!
+        </h2>
+        <p style="color: #666666; margin: 0; font-size: 16px;">
+          Cảm ơn bạn đã đăng ký tài khoản. Để hoàn tất quá trình đăng ký, vui lòng xác thực địa chỉ email của bạn.
+        </p>
+      </div>
+
+      <!-- Thông tin tài khoản -->
+      <div style="background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%); border-radius: 12px; padding: 25px; margin: 25px 0; border-left: 4px solid #667eea;">
+        <h3 style="color: #333333; margin: 0 0 15px; font-size: 18px; font-weight: 600;">
+          📧 Thông tin tài khoản
+        </h3>
+        <p style="margin: 8px 0; color: #555555; font-size: 14px;">
+          <strong>Email:</strong> <span style="color: #667eea;">[EMAIL_ADDRESS]</span>
+        </p>
+        <p style="margin: 8px 0; color: #555555; font-size: 14px;">
+          <strong>Thời gian đăng ký:</strong> [REGISTRATION_TIME]
+        </p>
+      </div>
+
+      <!-- Nút xác thực -->
+      <div style="text-align: center; margin: 35px 0;">
+        <a href="[VERIFICATION_LINK]" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-weight: 600; font-size: 16px; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease; border: none; cursor: pointer;">
+          ✨ Xác Thực Tài Khoản
+        </a>
+      </div>
+
+      <!-- Link dự phòng -->
+      <div style="background-color: #f8f9fa; border-radius: 8px; padding: 20px; margin: 25px 0;">
+        <p style="color: #666666; margin: 0 0 10px; font-size: 14px;">
+          <strong>Không thể nhấn nút trên?</strong> Sao chép và dán link sau vào trình duyệt:
+        </p>
+        <p style="margin: 0; word-break: break-all; font-size: 12px; color: #667eea; background-color: #ffffff; padding: 8px; border-radius: 4px; border: 1px dashed #ddd;">
+          [VERIFICATION_LINK]
+        </p>
+      </div>
+
+      <!-- Cảnh báo bảo mật -->
+      <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 8px; padding: 20px; margin: 25px 0; border-left: 4px solid #ffc107;">
+        <p style="margin: 0; color: #856404; font-size: 14px;">
+          <strong>🔐 Lưu ý bảo mật:</strong> Link xác thực này sẽ hết hạn sau <strong>24 giờ</strong>. Nếu bạn không thực hiện đăng ký này, vui lòng bỏ qua email này.
+        </p>
+      </div>
+
+      <!-- Hỗ trợ -->
+      <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eeeeee;">
+        <p style="color: #666666; margin: 0 0 15px; font-size: 14px;">
+          Cần hỗ trợ? Liên hệ với chúng tôi:
+        </p>
+        <div style="display: inline-flex; gap: 15px; align-items: center;">
+          <a href="mailto:support@company.com" style="color: #667eea; text-decoration: none; font-size: 14px;">
+            📧 support@company.com
+          </a>
+          <span style="color: #ddd;">|</span>
+          <a href="tel:+84123456789" style="color: #667eea; text-decoration: none; font-size: 14px;">
+            📞 (+84) 123-456-789
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background-color: #2c3e50; color: #ffffff; padding: 30px; text-align: center;">
+      <div style="margin-bottom: 20px;">
+        <h3 style="margin: 0 0 10px; font-size: 20px; color: #ffffff;">
+          [TÊN CÔNG TY]
+        </h3>
+        <p style="margin: 0; color: #bdc3c7; font-size: 14px;">
+          Nền tảng công nghệ hàng đầu
+        </p>
+      </div>
+
+      <!-- Social Links -->
+      <div style="margin: 20px 0;">
+        <a href="[FACEBOOK_URL]" style="display: inline-block; margin: 0 8px; padding: 8px; background-color: #3498db; border-radius: 50%; text-decoration: none; width: 16px; height: 16px; text-align: center;">
+          <span style="color: #ffffff; font-size: 12px;">f</span>
+        </a>
+        <a href="[TWITTER_URL]" style="display: inline-block; margin: 0 8px; padding: 8px; background-color: #1da1f2; border-radius: 50%; text-decoration: none; width: 16px; height: 16px; text-align: center;">
+          <span style="color: #ffffff; font-size: 12px;">t</span>
+        </a>
+        <a href="[LINKEDIN_URL]" style="display: inline-block; margin: 0 8px; padding: 8px; background-color: #0077b5; border-radius: 50%; text-decoration: none; width: 16px; height: 16px; text-align: center;">
+          <span style="color: #ffffff; font-size: 12px;">in</span>
+        </a>
+      </div>
+
+      <div style="border-top: 1px solid #34495e; padding-top: 20px; margin-top: 20px;">
+        <p style="margin: 0 0 8px; color: #bdc3c7; font-size: 12px;">
+          © 2025 [TÊN CÔNG TY]. Bảo lưu mọi quyền.
+        </p>
+        <p style="margin: 0; color: #95a5a6; font-size: 11px;">
+          [ĐỊA CHỈ CÔNG TY]
+        </p>
+        <div style="margin-top: 15px;">
+          <a href="[PRIVACY_URL]" style="color: #3498db; text-decoration: none; font-size: 11px; margin: 0 10px;">
+            Chính sách bảo mật
+          </a>
+          <a href="[TERMS_URL]" style="color: #3498db; text-decoration: none; font-size: 11px; margin: 0 10px;">
+            Điều khoản sử dụng
+          </a>
+          <a href="[UNSUBSCRIBE_URL]" style="color: #95a5a6; text-decoration: none; font-size: 11px; margin: 0 10px;">
+            Hủy đăng ký
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .container {
+        width: 100% !important;
+        margin: 0 !important;
+      }
+
+      .content {
+        padding: 20px !important;
+      }
+
+      .header {
+        padding: 30px 20px !important;
+      }
+
+      .button {
+        padding: 14px 30px !important;
+        font-size: 14px !important;
+      }
+    }
+  </style>
+</body>
+
+</html>

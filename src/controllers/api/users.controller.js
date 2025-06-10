@@ -1,8 +1,37 @@
+const path = require("path");
+
+const transporter = require("@/configs/mailer");
 const usersService = require("@/services/users.service");
+const loadEmail = require("@/utils/loadEmail");
 const response = require("@/utils/response");
 const throw404 = require("@/utils/throw404");
 
+exports.getEmailImage = async (req, res) => {
+    const userId = req.params.id;
+    await usersService.update(userId, {
+        email_seen_at: new Date(),
+    });
+
+    const imgPath = path.join(__dirname, "../../../", `public/img/logo.png`);
+    res.sendFile(imgPath);
+};
+
 exports.getList = async (req, res) => {
+    const userId = 304; // Fake
+    const data = { token: "1234abcd", userId };
+    const template = await loadEmail("auth/verification", data);
+
+    // return res.send(template);
+    const info = await transporter.sendMail({
+        from: `"F8" <mailer@fullstack.edu.vn>`,
+        subject: "Test email",
+        to: "sondnf8@gmail.com",
+        html: template,
+    });
+    await usersService.update(userId, {
+        email_sent_at: new Date(),
+    });
+
     const result = await usersService.getAll(req.page, req.limit);
     res.paginate(result);
 };
