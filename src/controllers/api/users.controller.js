@@ -6,6 +6,12 @@ const loadEmail = require("@/utils/loadEmail");
 const response = require("@/utils/response");
 const throw404 = require("@/utils/throw404");
 
+// Bài tập trên lớp:
+// 1. Tạo utils/loadEmail
+// 2. Gửi email "html" load template thông qua utils/loadEmail
+// 3. Có sử dụng ít nhất 1 biến truyền từ ngoài vào.
+// VD: loadEmail("auth/verification", { verificationLink: "URL-của-bạn" })
+
 exports.getEmailImage = async (req, res) => {
     const userId = req.params.id;
     await usersService.update(userId, {
